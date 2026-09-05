@@ -9,6 +9,8 @@ import (
 	"context"
 	"database/sql"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 const putQuote = `-- name: PutQuote :one
@@ -25,7 +27,7 @@ RETURNING id, created_at, updated_at, quote, author, last_served_at
 `
 
 type PutQuoteParams struct {
-	ID        interface{}
+	ID        uuid.UUID
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	Quote     string

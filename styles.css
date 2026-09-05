@@ -1,0 +1,22 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+#page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    flex: 0 0 auto;
+}
+
+main {
+    flex: 1;
+} 
+
+.hidden {
+    display: none;
+}

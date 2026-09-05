@@ -2,16 +2,96 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Enter New Quote</title>
+        <title>Quotes From Dad</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
     </head>
-    <body>
-<form onsubmit="submitQuote(event)">
-    <input id="quote" type="text">
-    <input id="author" type="text">
-    <button type="submit">Save</button>
-</form>
 
-<script src="app.js" defer></script>
+    <body>
+        <div id="page">
+            <nav>
+                <button onclick="showHome()">Home</button>
+                <button onclick="showLogin()">Login</button>
+                <button>Signup</button>
+                <button>Enter Quote</button>
+                <button onclick="allQuotes()">All Quotes</button>
+            </nav>
+            <main>
+                <div id="home-section">
+                    <h2>Quotes to my kids</h2>
+                    <p>When my kids went to college I started sending them quotes via text every morning. I recorded each one and now
+                        there are enough to make a database of them. This is the administration page, normally they are accessed via a
+                        /random path, and I actually encoded RFID tags to go to that page directly
+                    </p>
+                </div>
+
+                <div id="login-section" class="hidden">
+                <h2>Login</h2>
+                <form id="login-form">
+                    <input
+                    class="input-area"
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    required
+                    />
+                    <input
+                    class="input-area"
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    required
+                    />
+                    <div class="button-container">
+                    <button type="submit">Login</button>
+                    </div>
+                </form>
+                </div>
+
+                <div id="signup-section" class="hidden">
+                    <h2>Signup</h2>
+                <form id="signup-form">
+                    <input
+                    class="input-area"
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    required
+                    />
+                    <input
+                    class="input-area"
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    required
+                    />
+                    <input
+                    class="input-area"
+                    type="password"
+                    id="authorization"
+                    placeholder="Authorization"
+                    required
+                    />
+                    <div class="button-container">
+                    <button type="submit">Login</button>
+                    </div>
+                </form>
+                </div>
+
+                <div id="quote-entry-section" class="hidden">
+                <form onsubmit="submitQuote(event)">
+                    <input id="quote" type="text">
+                    <input id="author" type="text">
+                    <button type="submit">Save</button>
+                </form>
+                </div>
+
+                <div id="allquotes-section" class="hidden"></div>
+            </main>
+        </div>
+
+  
+
+    <script src="app.js" defer></script>
     </body>
 </html>

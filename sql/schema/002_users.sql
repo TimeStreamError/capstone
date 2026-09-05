@@ -1,0 +1,11 @@
+-- +goose up
+CREATE TABLE users (
+    id TEXT PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    hashed_password TEXT NOT NULL DEFAULT 'unset'
+);
+
+-- +goose down
+DROP TABLE users;

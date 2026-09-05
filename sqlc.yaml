@@ -6,3 +6,18 @@ sql:
     gen:
       go:
         out: "internal/database"
+        overrides:
+          - column: "quotes.id"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+
+          - column: "users.id"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+
+          - column: "refresh_tokens.user_id"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"

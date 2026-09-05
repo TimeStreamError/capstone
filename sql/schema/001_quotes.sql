@@ -1,6 +1,6 @@
 -- +goose up
 CREATE TABLE quotes (
-    id UUID PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
     quote TEXT NOT NULL,
