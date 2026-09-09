@@ -4,21 +4,54 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="styles.css">
-        <title>All Quotes In Database</title>
+        <title>Quote From Dad</title>
         <style>
             body {
-                background-image: url('backgrounds/001.jpg');
+                background-image: url('backgrounds/008.jpg');
             }
 
             p {
-                color: #FFFF;
-                font-size: 3rem;
+                color: #000000;
             }
         </style>
     </head>
+
     <body>
 
-    <div class=centered><p>{{ .Quote }}</p><p>{{ .Author }}</p></div>
+    <div id="quote-section"><p>"{{ .Quote }}"</p><br><p id="author-section">-{{ .Author }}</p></div>
+
+    <script>
+    function sizeText(containerElement) {
+        const box = containerElement.parentElement;
+
+        let low = 6;
+        let high = 100;
+
+        while (low <= high) {
+            const size = Math.floor((low + high) / 2);
+
+            containerElement.style.fontSize = size + 'px';
+
+            if (containerElement.scrollHeight <= box.clientHeight) {
+                // but can it be larger?
+                low = size + 1;
+            } else {
+                // doesn't fit, try smaller
+                high = size - 1;
+            } 
+
+        }
+
+        containerElement.style.fontSize = high + 'px';
+        const authorSection = document.getElementById("author-section");
+        const authorSize = Math.floor(high/2);
+        authorSection.style.fontSize = authorSize + 'px';
+
+    }
+    const quotesection = document.getElementById("quote-section");
+    sizeText(quotesection);
+
+    </script>
 
     </body>
 </html>

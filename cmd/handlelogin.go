@@ -22,7 +22,6 @@ func (apiCfg *APIConfig) handlerLogin(res http.ResponseWriter, req *http.Request
 		CreatedAt    time.Time `json:"created_at"`
 		UpdatedAt    time.Time `json:"updated_at"`
 		Email        string    `json:"email"`
-		IsChirpyRed  bool      `json:"is_chirpy_red"`
 		Token        string    `json:"token"`
 		RefreshToken string    `json:"refresh_token"`
 	}
@@ -63,7 +62,7 @@ func (apiCfg *APIConfig) handlerLogin(res http.ResponseWriter, req *http.Request
 		Email:     queriedUser.Email,
 	}
 
-	token, err := auth.MakeJWT(queriedUser.ID, apiCfg.tokenSecret, time.Hour)
+	token, err := auth.MakeJWT(queriedUser.ID, apiCfg.tokenSecret, time.Minute)
 	if err != nil {
 		respondWithError(res, http.StatusInternalServerError, err.Error())
 		return
@@ -83,12 +82,12 @@ func (apiCfg *APIConfig) handlerLogin(res http.ResponseWriter, req *http.Request
 	returnUser.RefreshToken = dbRefreshToken.Token
 
 	http.SetCookie(res, &http.Cookie{
-		Name:     "refresh_token",
-		Value:    refreshToken,
+		Name:     "refreshtoken",
+		Value:    dbRefreshToken.Token,
 		HttpOnly: true,
-		Secure:   true,
+		Secure:   false,
 		SameSite: http.SameSiteStrictMode,
-		Path:     "/api/auth",
+		Path:     "/",
 		MaxAge:   60 * 60 * 24 * 30, // 30 days
 	})
 

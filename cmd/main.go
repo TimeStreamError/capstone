@@ -51,12 +51,13 @@ func main() {
 
 	// the various path handlers
 	r.Handle("/*", http.FileServer(http.Dir(".")))
-	r.Post("/api/quotes", apiCfg.handlePutQuote)    // put quote requires login
-	r.Get("/api/import", apiCfg.handleImportCSV)    // import requires login
-	r.Get("/api/quotes", apiCfg.handleGetAllQuotes) // all quotes requires login
-	r.Get("/random", apiCfg.handleGetRandom)        // no login required, will use UUID id
-	r.Post("/admin/login", apiCfg.handlerLogin)     // no login required, but user needs to be in db
-	r.Post("/admin/signup", apiCfg.handleSignup)    // make a new user, should require master pin
+	r.Post("/api/quotes", apiCfg.handlePutQuote)          // put quote requires login
+	r.Get("/api/import", apiCfg.handleImportCSV)          // import requires login
+	r.Get("/api/quotes", apiCfg.handleGetAllQuotes)       // all quotes requires login
+	r.Get("/random", apiCfg.handleGetRandom)              // no login required, will use UUID id
+	r.Post("/admin/login", apiCfg.handlerLogin)           // no login required, but user needs to be in db
+	r.Post("/admin/signup", apiCfg.handleSignup)          // make a new user, should require master pin
+	r.Get("/api/refresh", apiCfg.handleRefreshTokenCheck) // called when the client gets a 401 status
 
 	// boot up the server
 	httpServer.Addr = ":8080"
